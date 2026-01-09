@@ -1,33 +1,65 @@
-<html>
+<!DOCTYPE html>
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>To-Do List</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
 
-    <header>
-        <nav role="navigation" aria-label="Main navigation">
-            <div class="logo">PORTFOLIO<span>.</span></div>
-            <button type="button" class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+    <div class="background-shape shape-1"></div>
+    <div class="background-shape shape-2"></div>
+
+    <div class="container">
+        <header>
+            <h1>Task Master</h1>
+            <p>Kelola tugas harianmu dengan mudah.</p>
+        </header>
+
+        <form id="todo-form" class="glass-panel input-section" action="#">
+            <div class="input-group">
+                <input type="text" id="todo-input" class="todo-input" name="task_name" placeholder="Apa rencanamu untuk hari ini?" aria-label="Nama Tugas" required>
+            </div>
+            <div class="input-group">
+                <input type="date" id="date-input" class="date-input" name="task_date" aria-label="Tanggal Tugas" required>
+            </div>
+            <button type="submit" class="todo-btn" title="Tambah Tugas">
+                <i class="fas fa-plus"></i>
             </button>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+        </form>
 
-    <main id="main">
-        <!-- Main content goes here -->
-    </main>
+        <div class="controls-container">
+            <div class="filter-todo">
+                <select id="filter-todo" class="filter-dropdown">
+                    <option value="all">Semua Tugas</option>
+                    <option value="completed">Selesai</option>
+                    <option value="uncompleted">Belum Selesai</option>
+                </select>
+            </div>
+            <button id="clear-all-btn" class="btn-danger">
+                Hapus Semua <i class="fas fa-trash-alt"></i>
+            </button>
+        </div>
 
-    <script src="script.js"></script>
+        <div class="todo-container glass-panel">
+            <ul class="todo-list">
+                </ul>
+            
+            <div id="empty-state" class="empty-state" style="display: none;">
+                <i class="fas fa-clipboard-check"></i>
+                <p>Tidak ada tugas. Bersantailah!</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
 </html>
