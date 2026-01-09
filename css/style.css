@@ -1,0 +1,296 @@
+/* Global Reset & Variables */
+:root {
+    --primary-color: #6c5ce7;
+    --secondary-color: #a29bfe;
+    --accent-color: #00cec9;
+    --danger-color: #ff7675;
+    --text-light: #ffffff;
+    --text-dark: #2d3436;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+    --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(120deg, #2d3436, #0984e3);
+    min-height: 100vh;
+    color: var(--text-light);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* flex-start agar bisa scroll jika list panjang */
+    overflow-x: hidden;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+/* Background Animation */
+.background-shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    animation: float 6s infinite ease-in-out alternate;
+}
+
+.shape-1 {
+    width: 300px;
+    height: 300px;
+    background: #6c5ce7;
+    top: 10%;
+    left: 10%;
+}
+
+.shape-2 {
+    width: 250px;
+    height: 250px;
+    background: #ff7675;
+    bottom: 10%;
+    right: 10%;
+    animation-delay: -3s;
+}
+
+@keyframes float {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(30px) scale(1.1); }
+}
+
+/* Main Container */
+.container {
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    z-index: 1;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+header p {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: var(--glass-border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Input Form */
+#todo-form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap; /* Agar responsif di HP */
+}
+
+.input-group {
+    flex: 1;
+    min-width: 150px;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px 15px;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: var(--text-dark);
+    transition: 0.3s;
+}
+
+input:focus, select:focus {
+    background: #fff;
+    box-shadow: 0 0 10px rgba(108, 92, 231, 0.5);
+}
+
+.todo-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.todo-btn:hover {
+    background: #5649c0;
+    transform: scale(1.05);
+}
+
+/* Filters & Controls */
+.controls-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.filter-dropdown {
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--text-dark);
+    font-weight: 600;
+    width: auto; /* Menyesuaikan lebar dengan konten */
+}
+
+.btn-danger {
+    background: var(--danger-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-danger:hover {
+    background: #d63031;
+}
+
+/* To-Do List Items (Cards) */
+.todo-list {
+    list-style: none;
+}
+
+.todo {
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--text-dark);
+    margin-bottom: 0.8rem;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    animation: slideIn 0.3s ease forwards;
+}
+
+.todo li {
+    flex: 1;
+    font-size: 1rem;
+    font-weight: 500;
+    padding-right: 10px;
+}
+
+.due-date {
+    font-size: 0.8rem;
+    color: #636e72;
+    background: #dfe6e9;
+    padding: 4px 8px;
+    border-radius: 20px;
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+/* Tombol Aksi di dalam List */
+.check-btn, .trash-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 5px;
+    margin-left: 5px;
+    transition: 0.2s;
+}
+
+.check-btn { color: #00b894; }
+.trash-btn { color: #d63031; }
+
+.check-btn:hover, .trash-btn:hover {
+    transform: scale(1.2);
+}
+
+/* States (Completed & Deleted) */
+
+.todo.completed {
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0.7;
+}
+
+.todo.completed li {
+    text-decoration: line-through;
+    color: #636e72;
+}
+
+/* Animasi saat delete */
+.todo.fall {
+    transform: translateY(20px) rotate(5deg);
+    opacity: 0;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+    color: rgba(255,255,255,0.7);
+}
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+/* Responsive Mobile */
+@media (max-width: 480px) {
+    #todo-form {
+        flex-direction: column;
+    }
+    
+    .todo {
+        flex-wrap: wrap;
+    }
+    
+    .due-date {
+        order: 2;
+        width: 100%;
+        text-align: center;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-right: 0;
+    }
+    
+    .check-btn, .trash-btn {
+        order: 3;
+    }
+}
